@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/* ── Custom Properties ── */
+:root {
+  --bg-primary: #0b0f14;
+  --bg-surface: #0f141c;
+  --bg-surface-alpha: rgba(255, 255, 255, 0.04);
+  --text-heading: #eef2f7;
+  --text-body: #9ba6b3;
+  --accent-primary: #6b7bff;
+  --accent-secondary: #38e0c4;
+  --accent-tertiary: #f6c94c;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Base ── */
+html {
+  scroll-behavior: auto; /* we control scroll manually */
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-body);
+  font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Utility layers ── */
+@layer utilities {
+  .text-heading {
+    color: var(--text-heading);
+  }
+  .text-body {
+    color: var(--text-body);
+  }
+  .bg-surface {
+    background: var(--bg-surface);
+  }
+  .bg-surface-alpha {
+    background: var(--bg-surface-alpha);
+  }
+  .border-subtle {
+    border-color: var(--border);
+  }
+  .accent-primary {
+    color: var(--accent-primary);
+  }
+  .accent-secondary {
+    color: var(--accent-secondary);
+  }
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(107, 123, 255, 0.3);
+  color: var(--text-heading);
+}
+
+/* ── Scrollbar (Webkit) ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

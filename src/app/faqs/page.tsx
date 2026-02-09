@@ -13,32 +13,27 @@ const faqs: FAQ[] = [
   {
     question: "What is Quant Manager?",
     answer:
-      "Quant Manager is a Quantower plugin that provides complete account oversight and automated risk enforcement for traders. It gives you a unified dashboard to monitor all your accounts and enforce risk rules like profit targets, loss limits, trailing balance protection, and timed locks.",
+      "Quant Manager is a 3rd party plugin for Quantower that provides complete account oversight and automated risk enforcement for traders. It gives you a unified dashboard to monitor all your accounts and enforce risk rules like profit targets, loss limits, trailing balance protection, and timed locks.",
   },
   {
     question: "What platforms does it work with?",
     answer:
-      "Quant Manager is built exclusively for Quantower. It works with any broker or data feed that Quantower supports, including Rithmic, CQG, Interactive Brokers, and more.",
+      "Quant Manager is built exclusively for Quantower. It is targeted towards prop traders trading with Rithmic connections, but works with any Quantower connection.",
   },
   {
     question: "Is this a subscription?",
     answer:
-      "No. Quant Manager is a one-time purchase of $500 for a lifetime license. This includes all future updates at no additional cost.",
+      "No. Quant Manager is a one-time purchase for a lifetime license. This includes all future updates at no additional cost.",
   },
   {
     question: "How does the risk enforcement work?",
     answer:
-      "You configure rules per account or account group — such as daily loss limits, profit targets, max drawdown, trailing balance, and time-based locks. Quant Manager monitors your accounts in real-time and automatically flattens positions and locks accounts when rules are triggered. No manual intervention needed.",
+      "Quantower has a built in account locking feature that Quant Manager leverages to enforce risk rules. No manual intervention needed.",
   },
   {
-    question: "Can I manage multiple accounts?",
+    question: "How do I use Quant Manager?",
     answer:
-      "Yes. Quant Manager is designed for multi-account management. You can view all accounts in a single dashboard, group them, and apply risk rules at the account or group level.",
-  },
-  {
-    question: "What happens when a rule triggers?",
-    answer:
-      "When a risk rule triggers (e.g., you hit your daily loss limit), Quant Manager will automatically flatten all open positions for that account and lock it to prevent further trading. You can configure which actions happen for each rule.",
+      "Visit our Docs page for detailed guides on installation, account editing, templates, custom formulas, and more.",
   },
   {
     question: "Can I override a lock?",
@@ -48,7 +43,7 @@ const faqs: FAQ[] = [
   {
     question: "How do I get support?",
     answer:
-      "Support is available via the Gumroad purchase page. After purchasing, you'll receive access to our support channel for setup assistance and any questions.",
+      "If your question is not answered here, support is available via email or through our Discord server.",
   },
 ];
 
@@ -154,17 +149,22 @@ export default function FAQsPage() {
               Still have questions? We&apos;re here to help.
             </p>
             <a
-              href="https://ldqtrading.gumroad.com/l/quantmanager?wanted=true"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:ldqtrading.nt@gmail.com"
               className="inline-flex items-center gap-2.5 rounded-xl bg-[#6b7bff] px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-[#6b7bff]/30 hover:bg-[#7d8cff] hover:shadow-[#6b7bff]/50 transition-all hover:-translate-y-0.5 active:translate-y-0"
             >
-              Get Access
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              Contact Us
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
                 <path
-                  d="M1 8h14M9 2l6 6-6 6"
+                  d="M2 3h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M2 4l6 4 6-4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />

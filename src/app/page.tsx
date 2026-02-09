@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const video = heroVideoRef.current;
     if (video) {
-      video.playbackRate = 0.75;
+      video.playbackRate = 0.7;
     }
   }, []);
 
@@ -153,14 +153,24 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <motion.div
+            initial="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={{
+              visible: { transition: { staggerChildren: 0.08 } },
+              hidden: {},
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
             {features.map((feat, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
+                variants={{
+                  visible: { opacity: 1 },
+                  hidden: { opacity: 0 },
+                }}
+                transition={{ duration: 0.5 }}
                 className="group relative rounded-2xl border border-white/[0.06] bg-[#0f141c]/60 backdrop-blur-sm p-7 hover:border-white/[0.12] transition-all duration-300 hover:bg-[#0f141c]/80"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#6b7bff]/20 to-[#38e0c4]/10 mb-5 ring-1 ring-white/[0.06]">
@@ -174,7 +184,7 @@ export default function Home() {
                 </p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 

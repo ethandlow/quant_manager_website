@@ -37,8 +37,8 @@ export default function Footer() {
               <Link href="/pricing" className="text-sm text-[#9ba6b3] hover:text-[#eef2f7] transition-colors">
                 Pricing
               </Link>
-              <Link href="/setup" className="text-sm text-[#9ba6b3] hover:text-[#eef2f7] transition-colors">
-                Setup
+              <Link href="/docs" className="text-sm text-[#9ba6b3] hover:text-[#eef2f7] transition-colors">
+                Docs
               </Link>
               <Link href="/faqs" className="text-sm text-[#9ba6b3] hover:text-[#eef2f7] transition-colors">
                 FAQs
@@ -63,6 +63,22 @@ export default function Footer() {
                 className="text-sm text-[#9ba6b3] hover:text-[#eef2f7] transition-colors"
               >
                 Quantower
+              </a>
+              <a
+                href="mailto:ldqtrading.nt@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-[#9ba6b3] hover:text-[#eef2f7] transition-colors"
+              >
+                Contact Us
+              </a>
+              <a
+                href="https://discord.gg/qjZgYt24yD"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-[#9ba6b3] hover:text-[#eef2f7] transition-colors"
+              >
+                Discord
               </a>
             </div>
           </div>

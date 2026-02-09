@@ -16,6 +16,8 @@
 /* ── Base ── */
 html {
   scroll-behavior: auto; /* we control scroll manually */
+  background: var(--bg-primary); /* prevents white flash on overscroll */
+  overflow-y: scroll; /* always show scrollbar gutter — prevents navbar shift */
 }
 
 body {

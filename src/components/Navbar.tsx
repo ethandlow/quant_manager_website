@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/setup", label: "Setup" },
+  { href: "/docs", label: "Docs" },
   { href: "/faqs", label: "FAQs" },
 ];
 
@@ -26,14 +26,9 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-[#0b0f14]/80 backdrop-blur-xl border-b border-white/[0.06]"
-            : "bg-transparent"
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 bg-[#0b0f14]/98 transition-[border-color] duration-300 ${
+          scrolled ? "border-b border-white/[0.06]" : "border-b border-transparent"
         }`}
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -116,7 +111,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>

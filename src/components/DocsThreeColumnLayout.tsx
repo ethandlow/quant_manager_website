@@ -4,6 +4,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import DocsSearchModal from "@/components/DocsSearchModal";
 
 interface NavItem {
   href: string;
@@ -21,6 +22,7 @@ export default function DocsThreeColumnLayout({
 }: DocsThreeColumnLayoutProps) {
   const pathname = usePathname();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const activeLabel =
     navItems.find((item) => pathname === item.href)?.label ??
@@ -33,8 +35,34 @@ export default function DocsThreeColumnLayout({
       transition={{ duration: 0.4 }}
       className="mx-auto max-w-[1440px] px-4 lg:px-8 py-8 lg:py-12"
     >
-      {/* Mobile nav toggle */}
-      <div className="lg:hidden mb-6">
+      {/* Mobile: search trigger + nav toggle */}
+      <div className="lg:hidden mb-6 space-y-3">
+        {/* Search trigger (mobile) */}
+        <button
+          type="button"
+          onClick={() => setSearchOpen(true)}
+          className="w-full flex items-center gap-2 rounded-xl border border-white/[0.08] bg-[#0f141c]/60 px-4 py-2.5 text-sm text-[#9ba6b3]/60 hover:border-white/[0.12] hover:text-[#9ba6b3] transition-colors"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden
+            className="text-[#9ba6b3] shrink-0"
+          >
+            <path
+              d="M7 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM14 14l-3.5-3.5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span>Search...</span>
+        </button>
+
+        {/* Nav toggle */}
         <button
           type="button"
           onClick={() => setMobileNavOpen(!mobileNavOpen)}
@@ -58,7 +86,7 @@ export default function DocsThreeColumnLayout({
           </svg>
         </button>
         {mobileNavOpen && (
-          <nav className="mt-2 rounded-xl border border-white/[0.08] bg-[#0f141c]/80 backdrop-blur-sm overflow-hidden">
+          <nav className="rounded-xl border border-white/[0.08] bg-[#0f141c]/80 backdrop-blur-sm overflow-hidden">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -82,6 +110,31 @@ export default function DocsThreeColumnLayout({
         {/* Left sidebar — page nav */}
         <aside className="hidden lg:block w-52 shrink-0">
           <nav className="sticky top-36 space-y-1">
+            {/* Search trigger (desktop) */}
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              className="w-full flex items-center gap-2 rounded-lg border border-white/[0.08] bg-[#0f141c]/60 px-3 py-2 mb-3 text-sm text-[#9ba6b3]/60 hover:border-white/[0.12] hover:text-[#9ba6b3] transition-colors"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden
+                className="text-[#9ba6b3] shrink-0"
+              >
+                <path
+                  d="M7 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM14 14l-3.5-3.5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span>Search...</span>
+            </button>
+
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -101,6 +154,9 @@ export default function DocsThreeColumnLayout({
         {/* Center content — full width */}
         <main className="flex-1 min-w-0">{children}</main>
       </div>
+
+      {/* Search modal */}
+      <DocsSearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </motion.div>
   );
 }

@@ -1,16 +1,12 @@
 "use client";
 
 import DocsThreeColumnLayout from "@/components/DocsThreeColumnLayout";
+import { specPages } from "./_pages";
 
-const specNavItems = [
-  { href: "/docs/specifications/variables", label: "Variable Reference" },
-  { href: "/docs/specifications/formula-syntax", label: "Formula Syntax" },
-  { href: "/docs/specifications/rule-types", label: "Rule Types" },
-  { href: "/docs/specifications/settings-reference", label: "Settings Reference" },
-  { href: "/docs/specifications/lock-durations-and-daily-reset", label: "Lock Durations & Daily Reset" },
-  { href: "/docs/specifications/event-log", label: "Event Log" },
-  { href: "/docs/specifications/template-reference", label: "Template Reference" },
-];
+const specNavItems = specPages.map((p) => ({
+  href: p.href,
+  label: p.navLabel ?? p.title,
+}));
 
 export default function SpecificationsLayout({
   children,

@@ -2,13 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import type { PageStep } from "@/types/docs";
 
-export interface Step {
-  id: string;
-  title: string;
-  body: string;
-  image?: string; // e.g. "/docs/my-screenshot.png"
-}
+export type Step = PageStep;
 
 interface DocsStepPageProps {
   title: string;

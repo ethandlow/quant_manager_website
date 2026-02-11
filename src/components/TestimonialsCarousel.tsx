@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const testimonials = [
   {
@@ -46,9 +46,11 @@ function StarIcon() {
 }
 
 export default function TestimonialsCarousel() {
+  const sectionRef = useRef<HTMLElement>(null);
   const [index, setIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
   const [direction, setDirection] = useState<"next" | "prev">("next");
+  const isVisible = useRef(false);
 
   const changeTo = useCallback(
     (newIndex: number, dir: "next" | "prev") => {
@@ -83,13 +85,30 @@ export default function TestimonialsCarousel() {
     [index, changeTo]
   );
 
+  // Only auto-advance when the section is visible in the viewport
   useEffect(() => {
-    const id = setInterval(goNext, 6000);
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible.current = entry.isIntersecting;
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (isVisible.current) goNext();
+    }, 6000);
     return () => clearInterval(id);
   }, [goNext]);
 
   return (
-    <section className="relative z-10 py-24 md:py-32 overflow-hidden">
+    <section ref={sectionRef} className="relative z-10 py-24 md:py-32 overflow-hidden">
       <div className="mx-auto max-w-4xl px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
           <p className="text-sm font-medium text-[#6b7bff] tracking-wider uppercase mb-3">
@@ -104,7 +123,7 @@ export default function TestimonialsCarousel() {
           {/* Card — fixed height prevents layout shift */}
           <div className="h-[320px] sm:h-[300px] md:h-[280px] flex flex-col">
             <div
-              className={`rounded-2xl border border-white/[0.06] bg-[#0f141c]/60 backdrop-blur-sm p-8 md:p-10 text-center h-full flex flex-col items-center justify-center transition-all duration-300 ${
+              className={`rounded-2xl border border-white/[0.06] bg-[#0f141c]/80 md:bg-[#0f141c]/60 md:backdrop-blur-sm p-8 md:p-10 text-center h-full flex flex-col items-center justify-center transition-all duration-300 ${
                 animating ? "opacity-0 translate-y-3" : "opacity-100 translate-y-0"
               }`}
             >

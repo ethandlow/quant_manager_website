@@ -18,10 +18,17 @@ export default function DocsLayout({
 
   return (
     <>
-      {/* Background glow */}
+      {/* Background glow — radial gradient on mobile, blur on desktop */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-[#6b7bff]/[0.04] blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[#38e0c4]/[0.03] blur-[120px]" />
+        <div
+          className="absolute inset-0 md:hidden"
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 60% at 20% 20%, rgba(107,123,255,0.04) 0%, transparent 70%), radial-gradient(ellipse 70% 50% at 80% 80%, rgba(56,224,196,0.03) 0%, transparent 70%)",
+          }}
+        />
+        <div className="hidden md:block absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-[#6b7bff]/[0.04] blur-[120px]" />
+        <div className="hidden md:block absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[#38e0c4]/[0.03] blur-[120px]" />
       </div>
 
       <div className="relative z-10 min-h-screen pt-16">

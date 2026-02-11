@@ -34,16 +34,30 @@ export default function HeroSection() {
   }, []);
 
   useEffect(() => {
-    // Defer video play until after hydration so it doesn't compete with JS parsing
     const video = heroVideoRef.current;
-    if (video) {
+
+    // Only autoplay on desktop — mobile shows the poster image (saves CPU/GPU)
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    if (video && !isMobile) {
       video.playbackRate = 0.7;
       video.play().catch(() => {
         // Autoplay may be blocked on some browsers; ignore silently
       });
     }
 
-    // Initial calculation
+    // Pause video when tab is hidden, resume when visible (prevents memory leaks)
+    const onVisibility = () => {
+      if (!video || isMobile) return;
+      if (document.hidden) {
+        video.pause();
+      } else {
+        video.play().catch(() => {});
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    // Initial scroll calculation
     updateScrollVars();
 
     const onScroll = () => {
@@ -57,7 +71,14 @@ export default function HeroSection() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("visibilitychange", onVisibility);
       if (rafId.current) cancelAnimationFrame(rafId.current);
+      // Clean up video on unmount (client-side nav away)
+      if (video) {
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+      }
     };
   }, [updateScrollVars]);
 
@@ -68,7 +89,6 @@ export default function HeroSection() {
           opacity: "var(--hero-opacity, 1)",
           transform:
             "translate3d(0, var(--hero-y, 0px), 0) scale(var(--hero-scale, 1))",
-          willChange: "opacity, transform",
         }}
         className="absolute inset-0 flex flex-col items-center justify-center"
       >

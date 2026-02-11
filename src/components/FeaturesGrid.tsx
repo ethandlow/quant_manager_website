@@ -100,7 +100,7 @@ export default function FeaturesGrid() {
           {features.map((feat, i) => (
             <div
               key={i}
-              className={`group relative rounded-2xl border border-white/[0.06] bg-[#0f141c]/60 backdrop-blur-sm p-7 hover:border-white/[0.12] transition-all duration-300 hover:bg-[#0f141c]/80 feature-card ${
+              className={`group relative rounded-2xl border border-white/[0.06] bg-[#0f141c]/80 md:bg-[#0f141c]/60 md:backdrop-blur-sm p-7 hover:border-white/[0.12] transition-all duration-300 hover:bg-[#0f141c]/80 feature-card ${
                 visible ? "feature-card-visible" : ""
               }`}
               style={{ animationDelay: `${i * 80}ms` }}

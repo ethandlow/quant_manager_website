@@ -1,14 +1,40 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useEffect, useCallback } from "react";
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const rafId = useRef<number>(0);
 
-  // Defer video play until after hydration so it doesn't compete with JS parsing
+  // Compute scroll progress and set CSS custom properties
+  const updateScrollVars = useCallback(() => {
+    const el = heroRef.current;
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    const sectionHeight = rect.height;
+
+    // scrollYProgress equivalent: 0 at top, 1 when section has scrolled fully past
+    const progress = Math.min(
+      Math.max(-rect.top / (sectionHeight || 1), 0),
+      1,
+    );
+
+    // heroOpacity: [0, 0.7] → [1, 0]
+    const opacity = Math.max(1 - progress / 0.7, 0);
+    // heroY: [0, 1] → [0, -80]
+    const y = -80 * progress;
+    // heroScale: [0, 1] → [1, 0.97]
+    const scale = 1 - 0.03 * progress;
+
+    el.style.setProperty("--hero-opacity", String(opacity));
+    el.style.setProperty("--hero-y", `${y}px`);
+    el.style.setProperty("--hero-scale", String(scale));
+  }, []);
+
   useEffect(() => {
+    // Defer video play until after hydration so it doesn't compete with JS parsing
     const video = heroVideoRef.current;
     if (video) {
       video.playbackRate = 0.7;
@@ -16,21 +42,34 @@ export default function HeroSection() {
         // Autoplay may be blocked on some browsers; ignore silently
       });
     }
-  }, []);
 
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
+    // Initial calculation
+    updateScrollVars();
 
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.97]);
+    const onScroll = () => {
+      if (rafId.current) return; // already scheduled
+      rafId.current = requestAnimationFrame(() => {
+        updateScrollVars();
+        rafId.current = 0;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+    };
+  }, [updateScrollVars]);
 
   return (
     <section ref={heroRef} className="relative z-10 h-screen overflow-hidden">
-      <motion.div
-        style={{ opacity: heroOpacity, y: heroY, scale: heroScale }}
+      <div
+        style={{
+          opacity: "var(--hero-opacity, 1)",
+          transform:
+            "translate3d(0, var(--hero-y, 0px), 0) scale(var(--hero-scale, 1))",
+          willChange: "opacity, transform",
+        }}
         className="absolute inset-0 flex flex-col items-center justify-center"
       >
         {/* Hero background video — deferred play, poster for fast LCP */}
@@ -67,11 +106,11 @@ export default function HeroSection() {
             </p>
           </div>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Scroll hint — CSS animation instead of Framer Motion */}
-      <motion.div
-        style={{ opacity: heroOpacity }}
+      {/* Scroll hint — CSS animation, no Framer Motion */}
+      <div
+        style={{ opacity: "var(--hero-opacity, 1)" }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
         <div className="flex flex-col items-center gap-2 scroll-hint-bounce">
@@ -103,7 +142,7 @@ export default function HeroSection() {
             />
           </svg>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

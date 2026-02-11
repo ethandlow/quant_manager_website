@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -90,62 +89,61 @@ export default function Navbar() {
               </a>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button — CSS transitions instead of Framer Motion */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="md:hidden flex flex-col gap-1.5 p-2"
               aria-label="Toggle menu"
             >
-              <motion.span
-                animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-                className="block h-[1.5px] w-5 bg-[#eef2f7] origin-center"
+              <span
+                className={`block h-[1.5px] w-5 bg-[#eef2f7] origin-center transition-transform duration-200 ${
+                  mobileOpen ? "rotate-45 translate-y-[4.5px]" : ""
+                }`}
               />
-              <motion.span
-                animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-                className="block h-[1.5px] w-5 bg-[#eef2f7]"
+              <span
+                className={`block h-[1.5px] w-5 bg-[#eef2f7] transition-opacity duration-200 ${
+                  mobileOpen ? "opacity-0" : "opacity-100"
+                }`}
               />
-              <motion.span
-                animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-                className="block h-[1.5px] w-5 bg-[#eef2f7] origin-center"
+              <span
+                className={`block h-[1.5px] w-5 bg-[#eef2f7] origin-center transition-transform duration-200 ${
+                  mobileOpen ? "-rotate-45 -translate-y-[4.5px]" : ""
+                }`}
               />
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-x-0 top-16 z-40 bg-[#0b0f14]/95 backdrop-blur-xl border-b border-white/[0.06] md:hidden"
+      {/* Mobile Menu — CSS transition instead of Framer Motion */}
+      <div
+        className={`fixed inset-x-0 top-16 z-40 bg-[#0b0f14]/95 backdrop-blur-xl border-b border-white/[0.06] md:hidden transition-all duration-250 ${
+          mobileOpen
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-2.5 pointer-events-none"
+        }`}
+      >
+        <div className="px-6 py-4 space-y-1">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMobileOpen(false)}
+              className="block px-3 py-2.5 text-sm text-[#9ba6b3] hover:text-[#eef2f7] rounded-lg hover:bg-white/[0.04] transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <a
+            href={CTA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block mt-3 text-center rounded-lg bg-[#6b7bff] px-4 py-2.5 text-sm font-medium text-white"
           >
-            <div className="px-6 py-4 space-y-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="block px-3 py-2.5 text-sm text-[#9ba6b3] hover:text-[#eef2f7] rounded-lg hover:bg-white/[0.04] transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <a
-                href={CTA_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block mt-3 text-center rounded-lg bg-[#6b7bff] px-4 py-2.5 text-sm font-medium text-white"
-              >
-                Get Access
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            Get Access
+          </a>
+        </div>
+      </div>
     </>
   );
 }

@@ -9,12 +9,20 @@ export const pageData: PageData = {
     {
       id: "hide-from-dashboard",
       title: "Hide an Account",
-      body: "Use the dashboard or account list to hide an account from view. Hidden accounts are not removed; they can be shown again later.",
+      body: "Right click an account in the dashboard and select 'Hide Account' to hide it from the dashboard.",
+      image: "/docs/show-hide.png",
     },
     {
-      id: "show-again",
+      id: "hidden-account-names",
+      title: "Hidden Account Names",
+      body: "Hidden account names will be displayed with curly braces surrounding the account name in the dashboard and won't be visible when 'Show Invisible Accounts' is disabled.",
+      image: "/docs/hidden-account.png",
+    },
+    {
+      id: "show-hidden-accounts",
       title: "Show Hidden Accounts",
-      body: "Access the option to show hidden accounts when you want them to appear in the dashboard again.",
+      body: "You can toggle 'Show Invisible Accounts' in the settings panel to show hidden accounts in the dashboard and unhide them.",
+      image: "/docs/invisible-setting.png",
     },
   ],
 };

@@ -6,6 +6,20 @@ import type { PageStep } from "@/types/docs";
 
 export type Step = PageStep;
 
+/** Turns URLs in text into clickable links and preserves line breaks. */
+function linkifyBody(body: string): string {
+  const escaped = body
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+  const withBreaks = escaped.replace(/\n/g, "<br />");
+  return withBreaks.replace(
+    /(https?:\/\/[^\s<]+)/g,
+    '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-[#6b7bff] underline hover:opacity-80">$1</a>'
+  );
+}
+
 interface DocsStepPageProps {
   title: string;
   description?: string;
@@ -85,16 +99,17 @@ export default function DocsStepPage({
                   <h3 className="text-base font-semibold text-[#eef2f7] mb-2">
                     {step.title}
                   </h3>
-                  <div className="text-sm text-[#9ba6b3] leading-relaxed whitespace-pre-line">
-                    {step.body}
-                  </div>
+                  <div
+                    className="text-sm text-[#9ba6b3] leading-relaxed whitespace-pre-line [&_a]:break-all"
+                    dangerouslySetInnerHTML={{ __html: linkifyBody(step.body) }}
+                  />
                   {step.image && (
-                    <div className="mt-4 rounded-xl overflow-hidden border border-white/[0.06]">
+                    <div className="mt-4 w-fit rounded-xl overflow-hidden border border-white/[0.06]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={step.image}
                         alt={step.title}
-                        className="w-full h-auto"
+                        className="max-w-full h-auto"
                       />
                     </div>
                   )}

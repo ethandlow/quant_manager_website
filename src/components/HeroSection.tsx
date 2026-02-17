@@ -4,7 +4,6 @@ import { useRef, useEffect, useCallback } from "react";
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
   const rafId = useRef<number>(0);
 
   // Compute scroll progress and set CSS custom properties
@@ -34,30 +33,6 @@ export default function HeroSection() {
   }, []);
 
   useEffect(() => {
-    const video = heroVideoRef.current;
-
-    // Only autoplay on desktop — mobile shows the poster image (saves CPU/GPU)
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-    if (video && !isMobile) {
-      video.playbackRate = 0.7;
-      video.play().catch(() => {
-        // Autoplay may be blocked on some browsers; ignore silently
-      });
-    }
-
-    // Pause video when tab is hidden, resume when visible (prevents memory leaks)
-    const onVisibility = () => {
-      if (!video || isMobile) return;
-      if (document.hidden) {
-        video.pause();
-      } else {
-        video.play().catch(() => {});
-      }
-    };
-    document.addEventListener("visibilitychange", onVisibility);
-
-    // Initial scroll calculation
     updateScrollVars();
 
     const onScroll = () => {
@@ -71,14 +46,7 @@ export default function HeroSection() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
-      document.removeEventListener("visibilitychange", onVisibility);
       if (rafId.current) cancelAnimationFrame(rafId.current);
-      // Clean up video on unmount (client-side nav away)
-      if (video) {
-        video.pause();
-        video.removeAttribute("src");
-        video.load();
-      }
     };
   }, [updateScrollVars]);
 
@@ -92,21 +60,15 @@ export default function HeroSection() {
         }}
         className="absolute inset-0 flex flex-col items-center justify-center"
       >
-        {/* Hero background video — deferred play, poster for fast LCP */}
-        <div className="absolute inset-0">
-          <video
-            ref={heroVideoRef}
-            src="/candlestick-loop.mp4"
-            preload="none"
-            poster="/candlestick-poster.jpg"
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover object-center opacity-75"
-            aria-hidden
+        {/* Ambient background */}
+        <div className="absolute inset-0 bg-[#0b0f14]">
+          <div
+            className="absolute inset-0 opacity-[0.15]"
+            style={{
+              background:
+                "radial-gradient(ellipse 80% 50% at 50% 0%, #6b7bff 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 100%, #38e0c4 0%, transparent 50%), radial-gradient(ellipse 50% 30% at 20% 80%, #6b7bff 0%, transparent 50%)",
+            }}
           />
-          {/* Blend into site background */}
-          <div className="absolute inset-0 bg-[#0b0f14]/60" />
           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0b0f14] to-transparent" />
           <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0b0f14] to-transparent" />
         </div>
@@ -124,6 +86,23 @@ export default function HeroSection() {
             <p className="mt-5 md:mt-6 text-base sm:text-lg md:text-xl text-[#9ba6b3] max-w-xl mx-auto leading-relaxed">
               Trade with confidence. Stop blowing up.
             </p>
+            <a
+              href="https://ldqtrading.gumroad.com/l/quantmanager?wanted=true"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center gap-2.5 rounded-xl bg-[#6b7bff] px-8 py-4 text-base font-semibold text-white shadow-xl shadow-[#6b7bff]/30 hover:bg-[#7d8cff] hover:shadow-[#6b7bff]/50 transition-all hover:-translate-y-0.5 active:translate-y-0"
+            >
+              Get Access
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M1 8h14M9 2l6 6-6 6"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </a>
           </div>
         </div>
       </div>

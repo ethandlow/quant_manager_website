@@ -25,10 +25,21 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Discount bar — above header */}
+      <div
+        className="fixed top-0 left-0 right-0 z-50 flex min-h-8 h-8 items-center justify-center overflow-hidden bg-gradient-to-r from-[#6b7bff]/90 to-[#38e0c4]/90 text-sm font-medium leading-none text-[#0b0f14]"
+        style={{ paddingTop: "env(safe-area-inset-top)" }}
+      >
+        <span className="flex items-center justify-center py-1">
+          Use code<span className="mx-1.5 font-bold">BETA</span>for 50% off
+        </span>
+      </div>
+
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 bg-[#0b0f14]/98 transition-[border-color] duration-300 ${
+        className={`fixed left-0 right-0 z-50 bg-[#0b0f14]/98 transition-[border-color] duration-300 ${
           scrolled ? "border-b border-white/[0.06]" : "border-b border-transparent"
         }`}
+        style={{ top: "calc(2rem + env(safe-area-inset-top, 0px))" }}
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
@@ -117,11 +128,12 @@ export default function Navbar() {
 
       {/* Mobile Menu — CSS transition instead of Framer Motion */}
       <div
-        className={`fixed inset-x-0 top-16 z-40 bg-[#0b0f14]/95 backdrop-blur-xl border-b border-white/[0.06] md:hidden transition-all duration-250 ${
+        className={`fixed inset-x-0 z-40 bg-[#0b0f14]/95 backdrop-blur-xl border-b border-white/[0.06] md:hidden transition-all duration-250 ${
           mobileOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-2.5 pointer-events-none"
         }`}
+        style={{ top: "calc(2rem + 4rem + env(safe-area-inset-top, 0px))" }}
       >
         <div className="px-6 py-4 space-y-1">
           {navLinks.map((link) => (

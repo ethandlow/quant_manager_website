@@ -31,9 +31,9 @@ export default function DocsLayout({
         <div className="hidden md:block absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[#38e0c4]/[0.03] blur-[120px]" />
       </div>
 
-      <div className="relative z-10 min-h-screen pt-24">
-        {/* Tab bar — pinned below main navbar + discount bar */}
-        <div className="sticky top-24 z-30 border-b border-white/[0.06] bg-[#0b0f14]/98">
+      <div className="relative z-10 min-h-screen pt-16">
+        {/* Tab bar — pinned below main navbar */}
+        <div className="sticky top-16 z-30 border-b border-white/[0.06] bg-[#0b0f14]/98">
           <div className="mx-auto max-w-[1440px] px-4 lg:px-8">
             <nav className="flex gap-1 overflow-x-auto scrollbar-none -mb-px">
               {tabs.map((tab) => {

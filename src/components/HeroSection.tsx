@@ -4,6 +4,7 @@ import { useRef, useEffect, useCallback } from "react";
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
   const rafId = useRef<number>(0);
 
   // Compute scroll progress and set CSS custom properties
@@ -33,20 +34,37 @@ export default function HeroSection() {
   }, []);
 
   useEffect(() => {
-    updateScrollVars();
+    // Defer video play until after hydration
+    const video = heroVideoRef.current;
+    if (video) {
+      video.play().catch(() => {});
+    }
+    const onVisibility = () => {
+      if (!heroVideoRef.current) return;
+      if (document.hidden) heroVideoRef.current.pause();
+      else heroVideoRef.current.play().catch(() => {});
+    };
+    document.addEventListener("visibilitychange", onVisibility);
 
+    updateScrollVars();
     const onScroll = () => {
-      if (rafId.current) return; // already scheduled
+      if (rafId.current) return;
       rafId.current = requestAnimationFrame(() => {
         updateScrollVars();
         rafId.current = 0;
       });
     };
-
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("visibilitychange", onVisibility);
       if (rafId.current) cancelAnimationFrame(rafId.current);
+      const v = heroVideoRef.current;
+      if (v) {
+        v.pause();
+        v.removeAttribute("src");
+        v.load();
+      }
     };
   }, [updateScrollVars]);
 
@@ -60,17 +78,32 @@ export default function HeroSection() {
         }}
         className="absolute inset-0 flex flex-col items-center justify-center"
       >
-        {/* Ambient background */}
+        {/* Hero background video */}
         <div className="absolute inset-0 bg-[#0b0f14]">
+          <video
+            ref={heroVideoRef}
+            src="/qm_hero_video.mp4"
+            poster="/qm_hero_background.png"
+            preload="metadata"
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            aria-hidden
+          />
+          {/* Blend edges into site background (#0b0f14) */}
+          <div className="absolute inset-0 bg-[#0b0f14]/40" />
           <div
-            className="absolute inset-0 opacity-[0.15]"
+            className="absolute inset-0 pointer-events-none"
             style={{
-              background:
-                "radial-gradient(ellipse 80% 50% at 50% 0%, #6b7bff 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 100%, #38e0c4 0%, transparent 50%), radial-gradient(ellipse 50% 30% at 20% 80%, #6b7bff 0%, transparent 50%)",
+              background: [
+                "linear-gradient(to bottom, #0b0f14 0%, transparent 15%)",
+                "linear-gradient(to top, #0b0f14 0%, transparent 35%)",
+                "linear-gradient(to right, #0b0f14 0%, transparent 20%)",
+                "linear-gradient(to left, #0b0f14 0%, transparent 20%)",
+              ].join(", "),
             }}
           />
-          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0b0f14] to-transparent" />
-          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0b0f14] to-transparent" />
         </div>
 
         {/* Hero text — centered */}

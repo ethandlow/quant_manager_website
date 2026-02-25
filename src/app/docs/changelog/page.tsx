@@ -2,6 +2,17 @@
 
 const entries = [
   {
+    version: "0.0.4",
+    date: "2026-02-25",
+    changes: [
+      "Added position limits and enforcement modes: Win, Loss, Both, None.",
+      "Position limits mode: per position or aggregate.",
+      "Added trading window.",
+      "UI updates: lock fields in Account Information; Flatten Time reordered.",
+      "Added Lock Risk Settings button to lock risk fields until 6 PM EST.",
+    ],
+  },
+  {
     version: "0.0.3",
     date: "2026-02-07 ",
     changes: [

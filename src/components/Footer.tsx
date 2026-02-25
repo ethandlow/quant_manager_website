@@ -49,7 +49,7 @@ export default function Footer() {
                 Links
               </span>
               <a
-                href="https://ldqtrading.gumroad.com/l/quantmanager?wanted=true"
+                href="https://buy.stripe.com/7sY5kE1nW84Ib0S5vH9ws00"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-[#9ba6b3] hover:text-[#eef2f7] transition-colors"

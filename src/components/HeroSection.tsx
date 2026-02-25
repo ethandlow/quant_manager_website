@@ -87,7 +87,7 @@ export default function HeroSection() {
               Trade with confidence. Stop blowing up.
             </p>
             <a
-              href="https://ldqtrading.gumroad.com/l/quantmanager?wanted=true"
+              href="https://buy.stripe.com/7sY5kE1nW84Ib0S5vH9ws00"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-8 inline-flex items-center gap-2.5 rounded-xl bg-[#6b7bff] px-8 py-4 text-base font-semibold text-white shadow-xl shadow-[#6b7bff]/30 hover:bg-[#7d8cff] hover:shadow-[#6b7bff]/50 transition-all hover:-translate-y-0.5 active:translate-y-0"

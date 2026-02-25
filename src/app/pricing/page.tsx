@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Footer from "@/components/Footer";
 
 const CTA_URL =
-  "https://ldqtrading.gumroad.com/l/quantmanager?wanted=true";
+  "https://buy.stripe.com/7sY5kE1nW84Ib0S5vH9ws00";
 
 const included = [
   "Unified account dashboard",

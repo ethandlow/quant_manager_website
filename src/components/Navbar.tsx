@@ -11,7 +11,7 @@ const navLinks = [
 ];
 
 const CTA_URL =
-  "https://ldqtrading.gumroad.com/l/quantmanager?wanted=true";
+  "https://buy.stripe.com/7sY5kE1nW84Ib0S5vH9ws00";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);

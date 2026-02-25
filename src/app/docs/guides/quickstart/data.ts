@@ -14,8 +14,7 @@ export const pageData: PageData = {
     {
       id: "download",
       title: "Download Installer",
-      body: "Download the Quant Manager installer from your Gumroad library.",
-      image: "/docs/gumroad-library.png",
+      body: "Download the Quant Manager installer from your email receipt.",
     },
     {
       id: "install",

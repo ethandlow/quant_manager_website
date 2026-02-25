@@ -34,7 +34,7 @@ export default function PricingPage() {
         <div className="hidden md:block absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[#38e0c4]/[0.03] blur-[120px]" />
       </div>
 
-      <main className="relative z-10 pt-28 pb-20 min-h-screen">
+      <main className="relative z-10 pt-24 pb-20 min-h-screen">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           {/* Header */}
           <motion.div
@@ -70,7 +70,7 @@ export default function PricingPage() {
                   <p className="text-sm text-[#9ba6b3] mb-1">Quant Manager</p>
                   <div className="flex items-baseline gap-2">
                     <span className="text-5xl md:text-6xl font-bold text-[#eef2f7] tracking-tight">
-                      $500
+                      $250
                     </span>
                     <span className="text-base text-[#9ba6b3]">one-time</span>
                   </div>

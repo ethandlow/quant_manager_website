@@ -36,11 +36,6 @@ const faqs: FAQ[] = [
       "Visit our Docs page for detailed guides on installation, account editing, templates, custom formulas, and more.",
   },
   {
-    question: "Can I override a lock?",
-    answer:
-      "Locks can be manually released from the Quant Manager dashboard if needed. However, the system is designed to protect you from emotional or impulsive decisions, so overriding should be deliberate.",
-  },
-  {
     question: "How do I get support?",
     answer:
       "If your question is not answered here, support is available via email or through our Discord server.",
@@ -118,7 +113,7 @@ export default function FAQsPage() {
         <div className="hidden md:block absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[#38e0c4]/[0.03] blur-[120px]" />
       </div>
 
-      <main className="relative z-10 pt-28 pb-20 min-h-screen">
+      <main className="relative z-10 pt-24 pb-20 min-h-screen">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           {/* Header */}
           <motion.div

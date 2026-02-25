@@ -9,7 +9,7 @@ export const pageData: PageData = {
     {
       id: "purchase",
       title: "Purchase Quant Manager",
-      body: 'Click "Get Access" to purchase the lifetime license from our Gumroad store. You\'ll receive a download link immediately after payment.',
+      body: 'Click "Get Access" to purchase the lifetime license. You\'ll receive a download link with your license key in your email receipt immediately after payment. Email us if you do not receive your license key.',
     },
     {
       id: "download",

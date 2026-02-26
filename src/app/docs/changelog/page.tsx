@@ -2,6 +2,14 @@
 
 const entries = [
   {
+    version: "0.0.5",
+    date: "2026-02-26",
+    changes: [
+      "Fixed a bug where profit targets appeared negative.",
+      "Added DEMO mode: when there is no license key, the plugin will show only one account."
+    ],
+  },
+  {
     version: "0.0.4",
     date: "2026-02-25",
     changes: [
@@ -47,6 +55,7 @@ function formatDate(iso: string) {
 }
 
 import { motion } from "framer-motion";
+import { version } from "os";
 
 export default function ChangelogPage() {
   return (

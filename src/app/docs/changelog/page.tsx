@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 const entries = [
   {
@@ -6,7 +6,7 @@ const entries = [
     date: "2026-02-26",
     changes: [
       "Fixed a bug where profit targets appeared negative.",
-      "Added DEMO mode: when there is no license key, the plugin will show only one account."
+      "Added DEMO mode: when there is no license key, the plugin will show only one account.",
     ],
   },
   {
@@ -121,3 +121,6 @@ export default function ChangelogPage() {
     </motion.div>
   );
 }
+
+
+

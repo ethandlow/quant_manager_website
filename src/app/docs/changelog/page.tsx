@@ -2,7 +2,7 @@
 
 const entries = [
   {
-    version: "0.0.7",
+    version: "0.0.6",
     date: "2026-02-26",
     changes: [
       "Added 'Show Confirmations' in setting to toggle confirmation windows.",
@@ -132,6 +132,7 @@ export default function ChangelogPage() {
     </motion.div>
   );
 }
+
 
 
 

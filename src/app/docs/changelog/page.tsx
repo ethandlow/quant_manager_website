@@ -2,6 +2,17 @@
 
 const entries = [
   {
+    version: "0.0.7",
+    date: "2026-02-26",
+    changes: [
+      "Added 'Show Confirmations' in setting to toggle confirmation windows.",
+      "Added 'Show Summary Table' in setting to give users the option to remove the summary table.",
+      "Added 'Show toolbar' right-click menu to give users the option to remove the toolbar.",
+      "Added 'Copy' to right-click menu in Edit Account to easily copy variables.",
+      "Updated Trading Window UI text for clarification.",
+    ],
+  },
+  {
     version: "0.0.5",
     date: "2026-02-26",
     changes: [
@@ -121,6 +132,7 @@ export default function ChangelogPage() {
     </motion.div>
   );
 }
+
 
 
 

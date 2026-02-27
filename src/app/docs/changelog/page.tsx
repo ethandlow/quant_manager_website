@@ -2,6 +2,18 @@
 
 const entries = [
   {
+    version: "0.0.7",
+    date: "2026-02-27",
+    changes: [
+      "Added max position size limit (NOTE: ORDERS ARE STILL SENT TO THE EXCHANGE, THEY ARE ONLY CLOSED AFTER FILLED/CONFIRMED).",
+      "Added enforcement mode for size limits: flatten, reduce, and warn.",
+      "Templates now save and apply size limit settings with other risk settings.",
+      "Updated flattening logic for more efficient flattening.",
+      "Added licensing notifications.",
+      "Added 'Show in Notification Center' to settings to get notified on accounts being locked.",
+    ],
+  },
+  {
     version: "0.0.6",
     date: "2026-02-26",
     changes: [
@@ -132,6 +144,7 @@ export default function ChangelogPage() {
     </motion.div>
   );
 }
+
 
 
 

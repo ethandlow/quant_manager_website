@@ -199,9 +199,11 @@ const SummaryCols = ({
 );
 
 export default function QuantManagerReplica() {
-  const [accounts, setAccounts] = useState<Account[]>(() =>
-    JSON.parse(JSON.stringify(DEFAULT_ACCOUNTS))
-  );
+  const [accounts, setAccounts] = useState<Account[]>(() => {
+    const base: Account[] = JSON.parse(JSON.stringify(DEFAULT_ACCOUNTS));
+    const tenMinFromNow = Date.now() + 10 * 60 * 1000;
+    return base.map((a) => ({ ...a, lockEndTime: tenMinFromNow }));
+  });
   const [selectedRowId, setSelectedRowId] = useState<string | null>(null);
   const [selectedSummaryLabel, setSelectedSummaryLabel] = useState<string | null>(null);
   const [summaryMode, setSummaryMode] = useState({ type: true, firm: false });
@@ -226,7 +228,9 @@ export default function QuantManagerReplica() {
   }, [summaryDropdownOpen]);
 
   const reset = useCallback(() => {
-    setAccounts(JSON.parse(JSON.stringify(DEFAULT_ACCOUNTS)));
+    const base: Account[] = JSON.parse(JSON.stringify(DEFAULT_ACCOUNTS));
+    const tenMinFromNow = Date.now() + 10 * 60 * 1000;
+    setAccounts(base.map((a) => ({ ...a, lockEndTime: tenMinFromNow })));
     setSelectedRowId(null);
     setSelectedSummaryLabel(null);
     setSummaryMode({ type: true, firm: false });

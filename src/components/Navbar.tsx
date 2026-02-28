@@ -26,7 +26,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 bg-[#0b0f14]/98 transition-[border-color] duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 bg-[#000000]/98 transition-[border-color] duration-300 ${
           scrolled ? "border-b border-white/[0.06]" : "border-b border-transparent"
         }`}
         style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
@@ -45,7 +45,7 @@ export default function Navbar() {
                   height={20}
                 />
               </div>
-              <span className="text-[15px] font-semibold tracking-tight text-[#eef2f7] group-hover:text-white transition-colors">
+              <span className="text-[15px] tracking-tight text-[#eef2f7] group-hover:text-white transition-colors">
                 Quant Manager
               </span>
             </Link>
@@ -69,7 +69,7 @@ export default function Navbar() {
                 href={CTA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-[#6b7bff] px-4 py-2 text-sm font-medium text-white shadow-lg shadow-[#6b7bff]/25 hover:bg-[#7d8cff] transition-all hover:shadow-[#6b7bff]/40 hover:-translate-y-px active:translate-y-0"
+                className="inline-flex items-center gap-2 rounded-none border-0 bg-[#27496D] px-4 py-2 text-sm text-white shadow-none hover:bg-[#27496D] transition-all hover:-translate-y-px active:translate-y-0"
               >
                 Get Access
                 <svg
@@ -118,7 +118,7 @@ export default function Navbar() {
 
       {/* Mobile Menu — CSS transition instead of Framer Motion */}
       <div
-        className={`fixed inset-x-0 z-40 bg-[#0b0f14]/95 backdrop-blur-xl border-b border-white/[0.06] md:hidden transition-all duration-250 ${
+        className={`fixed inset-x-0 z-40 bg-[#000000]/95 backdrop-blur-xl border-b border-white/[0.06] md:hidden transition-all duration-250 ${
           mobileOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-2.5 pointer-events-none"
@@ -140,7 +140,7 @@ export default function Navbar() {
             href={CTA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="block mt-3 text-center rounded-lg bg-[#6b7bff] px-4 py-2.5 text-sm font-medium text-white"
+            className="block mt-3 text-center rounded-none bg-[#27496D] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#27496D] transition-colors"
           >
             Get Access
           </a>

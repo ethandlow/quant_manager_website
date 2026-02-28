@@ -1,16 +1,32 @@
 @import "tailwindcss";
 
-/* ── Custom Properties ── */
+/* ── Design system (from live site) ── */
 :root {
-  --bg-primary: #0b0f14;
+  /* Backgrounds */
+  --bg-primary: #000000;
   --bg-surface: #0f141c;
+  --bg-panel: #0b1016;
+  --bg-bar: #111822;
+  --bg-button: #17212d;
+  --bg-button-hover: #1f2e3d;
   --bg-surface-alpha: rgba(255, 255, 255, 0.04);
+
+  /* Text */
   --text-heading: #eef2f7;
   --text-body: #9ba6b3;
-  --accent-primary: #6b7bff;
+  --text-secondary: #ccd6e0;
+  --text-muted: #8ca1b6;
+
+  /* Accent & semantic */
+  --accent-primary: #27496D;
   --accent-secondary: #38e0c4;
   --accent-tertiary: #f6c94c;
+  --accent-error: #f87171;
+
+  /* Borders */
   --border: rgba(255, 255, 255, 0.08);
+  --border-panel: #1e2a38;
+  --border-button: #273646;
 }
 
 /* ── Base ── */
@@ -23,14 +39,16 @@ html {
 body {
   background: var(--bg-primary);
   color: var(--text-body);
-  font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont,
-    sans-serif;
+  font-family: -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", 'Inter', "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* ── Utility layers ── */
 @layer utilities {
+  .font-sans {
+    font-family: -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", 'Inter', "Helvetica Neue", sans-serif;
+  }
   .text-heading {
     color: var(--text-heading);
   }
@@ -52,37 +70,15 @@ body {
   .accent-secondary {
     color: var(--accent-secondary);
   }
+  .accent-error {
+    color: var(--accent-error);
+  }
+  .border-panel {
+    border-color: var(--border-panel);
+  }
 }
 
 /* ── Animations ── */
-@keyframes heroTextEnter {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero-text-enter {
-  animation: heroTextEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
-}
-
-@keyframes scrollHintBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
-}
-
-.scroll-hint-bounce {
-  animation: scrollHintBounce 2s ease-in-out infinite;
-}
-
-.scroll-hint-dot {
-  animation: scrollHintBounce 2s ease-in-out infinite;
-}
-
 @keyframes featureFadeIn {
   from {
     opacity: 0;
@@ -98,17 +94,6 @@ body {
 
 .feature-card-visible {
   animation: featureFadeIn 0.5s ease-out forwards;
-}
-
-@keyframes testimonialEnter {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* ── Selection ── */

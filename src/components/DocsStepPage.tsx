@@ -16,7 +16,7 @@ function linkifyBody(body: string): string {
   const withBreaks = escaped.replace(/\n/g, "<br />");
   return withBreaks.replace(
     /(https?:\/\/[^\s<]+)/g,
-    '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-[#6b7bff] underline hover:opacity-80">$1</a>'
+    '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-[#27496D] underline hover:opacity-80">$1</a>'
   );
 }
 
@@ -65,7 +65,7 @@ export default function DocsStepPage({
           transition={{ duration: 0.5 }}
           className="mb-10"
         >
-          <h1 className="text-2xl md:text-3xl font-bold text-[#eef2f7] tracking-tight">
+          <h1 className="text-2xl md:text-3xl  text-[#eef2f7] tracking-tight">
             {title}
           </h1>
           {description && (
@@ -90,13 +90,13 @@ export default function DocsStepPage({
               className="scroll-mt-36 rounded-2xl border border-white/[0.06] bg-[#0f141c]/60 p-6 md:p-8"
             >
               <div className="flex items-start gap-4">
-                <div className="shrink-0 flex h-8 w-8 items-center justify-center rounded-lg bg-[#6b7bff]/10 ring-1 ring-[#6b7bff]/20">
-                  <span className="text-xs font-bold text-[#6b7bff]">
+                <div className="shrink-0 flex h-8 w-8 items-center justify-center rounded-lg bg-[#27496D]/10 ring-1 ring-[#27496D]/20">
+                  <span className="text-xs text-[#38e0c4]">
                     {i + 1}
                   </span>
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-base font-semibold text-[#eef2f7] mb-2">
+                  <h3 className="text-base  text-[#eef2f7] mb-2">
                     {step.title}
                   </h3>
                   <div
@@ -123,7 +123,7 @@ export default function DocsStepPage({
       {/* Right sidebar — step tracker (desktop only) */}
       <aside className="hidden xl:block w-44 shrink-0">
         <nav className="sticky top-36 space-y-0.5">
-          <p className="text-[10px] font-semibold text-[#9ba6b3]/60 uppercase tracking-widest mb-3 px-3">
+          <p className="text-[10px]  text-[#9ba6b3]/60 uppercase tracking-widest mb-3 px-3">
             On this page
           </p>
           {steps.map((step) => {
@@ -140,7 +140,7 @@ export default function DocsStepPage({
                 }}
                 className={`block text-xs py-1.5 px-3 transition-all border-l-2 ${
                   isActive
-                    ? "border-[#6b7bff] text-[#eef2f7] font-medium"
+                    ? "border-[#38e0c4] text-white font-medium"
                     : "border-transparent text-[#9ba6b3]/70 hover:text-[#eef2f7] hover:border-white/20"
                 }`}
               >

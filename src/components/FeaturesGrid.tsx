@@ -34,10 +34,10 @@ const features = [
       "Automatically trail and lock when drawdown exceeds your threshold.",
   },
   {
-    icon: "\u{1F512}",
-    title: "Account Flatten & Lock",
+    icon: "\u{1F4C8}",
+    title: "Max Position Size",
     description:
-      "Instantly flatten all positions and lock an account with a single click when rules trigger.",
+      "Set a maximum position size per symbol or account. Auto-flatten or block new orders when the limit is exceeded.",
   },
   {
     icon: "\u{1F3A8}",
@@ -52,10 +52,10 @@ const features = [
       "Customize your risk rules to fit your trading style using our custom formula builder.",
   },
   {
-    icon: "\u{1F514}",
-    title: "Real-time Monitoring",
+    icon: "\u{1F512}",
+    title: "Account Flatten & Lock",
     description:
-      "Monitor your accounts in real-time. Get alerts when rules are triggered.",
+      "Instantly flatten all positions and lock an account with a single click when rules trigger.",
   },
 ];
 
@@ -85,10 +85,10 @@ export default function FeaturesGrid() {
     <section className="relative z-10 py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center mb-16 md:mb-20">
-          <p className="text-sm font-medium text-[#6b7bff] tracking-wider uppercase mb-3">
+          <p className="text-sm font-medium text-[#38e0c4] tracking-wider uppercase mb-3">
             Key Features
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#eef2f7]">
+          <h2 className="text-3xl md:text-4xl  tracking-tight text-[#eef2f7]">
             Take your trading to the next level
           </h2>
         </div>
@@ -105,10 +105,10 @@ export default function FeaturesGrid() {
               }`}
               style={{ animationDelay: `${i * 80}ms` }}
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#6b7bff]/20 to-[#38e0c4]/10 mb-5 ring-1 ring-white/[0.06]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#27496D]/20 to-[#38e0c4]/10 mb-5 ring-1 ring-white/[0.06]">
                 <span className="text-lg">{feat.icon}</span>
               </div>
-              <h3 className="text-base font-semibold text-[#eef2f7] mb-2">
+              <h3 className="text-base  text-[#eef2f7] mb-2">
                 {feat.title}
               </h3>
               <p className="text-sm text-[#9ba6b3] leading-relaxed">

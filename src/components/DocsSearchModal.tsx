@@ -28,7 +28,7 @@ function highlightMatches(text: string, words: string[]): React.ReactNode[] {
       return (
         <span
           key={i}
-          className="bg-[#6b7bff]/20 text-[#eef2f7] rounded px-0.5"
+          className="bg-[#27496D]/20 text-[#eef2f7] rounded px-0.5"
         >
           {part}
         </span>
@@ -244,7 +244,7 @@ export default function DocsSearchModal({
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search docs..."
-                className="w-full rounded-xl border border-white/[0.1] bg-[#0f141c] py-3.5 pl-11 pr-20 text-sm text-[#eef2f7] placeholder:text-[#9ba6b3]/60 focus:border-[#6b7bff]/50 focus:outline-none focus:ring-1 focus:ring-[#6b7bff]/30"
+                className="w-full rounded-xl border border-white/[0.1] bg-[#0f141c] py-3.5 pl-11 pr-20 text-sm text-[#eef2f7] placeholder:text-[#9ba6b3]/60 focus:border-[#27496D]/50 focus:outline-none focus:ring-1 focus:ring-[#27496D]/30"
                 aria-label="Search documentation"
               />
               <button
@@ -276,7 +276,7 @@ export default function DocsSearchModal({
                         onMouseEnter={() => setSelectedIdx(i)}
                         className={`w-full text-left px-4 py-3 transition-colors ${
                           i === selectedIdx
-                            ? "bg-[#6b7bff]/[0.08]"
+                            ? "bg-[#27496D]/[0.08]"
                             : "hover:bg-white/[0.03]"
                         } ${i > 0 ? "border-t border-white/[0.04]" : ""}`}
                       >
@@ -290,7 +290,7 @@ export default function DocsSearchModal({
                         </div>
                         {result.stepTitle && (
                           <div className="mt-1">
-                            <span className="text-xs font-medium text-[#6b7bff]/80">
+                            <span className="text-xs font-medium text-[#27496D]/80">
                               {highlightMatches(result.stepTitle, words)}
                             </span>
                             {result.snippet && (

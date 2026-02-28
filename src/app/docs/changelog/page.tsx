@@ -1,4 +1,6 @@
-﻿"use client";
+"use client";
+
+import { motion } from "framer-motion";
 
 const entries = [
   {
@@ -77,9 +79,6 @@ function formatDate(iso: string) {
   });
 }
 
-import { motion } from "framer-motion";
-import { version } from "os";
-
 export default function ChangelogPage() {
   return (
     <motion.div
@@ -94,7 +93,7 @@ export default function ChangelogPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-2xl md:text-3xl font-bold text-[#eef2f7] tracking-tight mb-3">
+          <h1 className="text-2xl md:text-3xl  text-[#eef2f7] tracking-tight mb-3">
             Changelog
           </h1>
           <p className="text-sm text-[#9ba6b3] mb-10">
@@ -124,7 +123,7 @@ export default function ChangelogPage() {
                 className="rounded-2xl border border-white/[0.06] bg-[#0f141c]/60 p-6 md:p-8"
               >
                 <div className="flex flex-wrap items-baseline gap-2 mb-4">
-                  <span className="text-lg font-semibold text-[#eef2f7]">
+                  <span className="text-lg  text-[#eef2f7]">
                     v{entry.version}
                   </span>
                   <span className="text-sm text-[#9ba6b3]">

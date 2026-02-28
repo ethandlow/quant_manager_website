@@ -111,10 +111,10 @@ export default function TestimonialsCarousel() {
     <section ref={sectionRef} className="relative z-10 py-24 md:py-32 overflow-hidden">
       <div className="mx-auto max-w-4xl px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-sm font-medium text-[#6b7bff] tracking-wider uppercase mb-3">
+          <p className="text-sm font-medium text-[#38e0c4] tracking-wider uppercase mb-3">
             Testimonials
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#eef2f7]">
+          <h2 className="text-3xl md:text-4xl  tracking-tight text-[#eef2f7]">
             50+ traders, 100% satisfaction rate
           </h2>
         </div>
@@ -172,7 +172,7 @@ export default function TestimonialsCarousel() {
                   onClick={() => goTo(i)}
                   className={`h-2 rounded-full transition-all ${
                     i === index
-                      ? "w-6 bg-[#6b7bff]"
+                      ? "w-6 bg-[#38e0c4]"
                       : "w-2 bg-white/[0.2] hover:bg-white/[0.3]"
                   }`}
                   aria-label={`Go to testimonial ${i + 1}`}

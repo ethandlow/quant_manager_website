@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/[0.06] bg-[#0b0f14]">
+    <footer className="relative border-t border-white/[0.06] bg-[#000000]">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-12 md:py-16">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           {/* Brand */}
@@ -18,7 +18,7 @@ export default function Footer() {
                   height={16}
                 />
               </div>
-              <span className="text-sm font-semibold text-[#eef2f7] tracking-tight">
+              <span className="text-sm  text-[#eef2f7] tracking-tight">
                 Quant Manager
               </span>
             </div>

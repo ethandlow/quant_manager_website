@@ -94,7 +94,7 @@ export default function DocsThreeColumnLayout({
                 onClick={() => setMobileNavOpen(false)}
                 className={`block w-full text-left px-4 py-3 text-sm transition-colors ${
                   pathname === item.href
-                    ? "text-[#6b7bff] bg-[#6b7bff]/[0.06]"
+                    ? "text-white bg-[#38e0c4]/[0.08]"
                     : "text-[#9ba6b3] hover:text-[#eef2f7] hover:bg-white/[0.03]"
                 }`}
               >
@@ -141,7 +141,7 @@ export default function DocsThreeColumnLayout({
                 href={item.href}
                 className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-all ${
                   pathname === item.href
-                    ? "text-[#6b7bff] bg-[#6b7bff]/[0.08] font-medium"
+                    ? "text-[#eef2f7] bg-white/[0.04] font-medium"
                     : "text-[#9ba6b3] hover:text-[#eef2f7] hover:bg-white/[0.04]"
                 }`}
               >

@@ -18,7 +18,7 @@ export default function HeroSection() {
       1,
     );
 
-    const opacity = Math.max(1 - progress / 0.7, 0);
+    const opacity = Math.max(1 - (progress - 0.45) / 0.45, 0);
     const y = -80 * progress;
     const scale = 1 - 0.03 * progress;
 
@@ -83,14 +83,15 @@ export default function HeroSection() {
           </a>
         </div>
 
-        {/* Quant Manager Replica — capped height so features follow soon after */}
+        {/* Quant Manager Replica — enough height to show full UI before next section */}
         <div className="w-full max-w-6xl mx-auto px-6 pb-12 flex items-start justify-center">
           <div
             className="relative w-full rounded-md overflow-hidden border border-[#1e2a38] bg-[#0b1016]"
             style={{
               boxShadow: "0 30px 70px -20px rgba(0,0,0,0.5)",
               aspectRatio: "1140/633",
-              maxHeight: "min(55vh, 520px)",
+              minHeight: 620,
+              maxHeight: "min(80vh, 680px)",
             }}
           >
             <QuantManagerReplica />

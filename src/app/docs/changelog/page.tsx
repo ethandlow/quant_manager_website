@@ -1,8 +1,17 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 
 const entries = [
+  {
+    version: "0.0.8",
+    date: "2026-02-28",
+    changes: [
+      "Added Statistics section in Edit Account with Starting Balance, Target Balance, Biggest Day, Minimum Daily Profit, Minimum Profit Days, Minimum Consistency, and Payout Eligibility.",
+      "Added PAYOUT button to reset starting balance and profit day counter when payout conditions are met.",
+      "Added Target Balance, Biggest Day, Consistency, Profit Days, and Payout Eligibility columns to the Quant Manager accounts table.",
+    ],
+  },
   {
     version: "0.0.7",
     date: "2026-02-27",
@@ -143,6 +152,7 @@ export default function ChangelogPage() {
     </motion.div>
   );
 }
+
 
 
 

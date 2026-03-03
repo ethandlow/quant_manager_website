@@ -4,6 +4,14 @@ import { motion } from "framer-motion";
 
 const entries = [
   {
+    version: "0.0.9",
+    date: "2026-03-03",
+    changes: [
+      "Added 'Lock/Unlock' option to quickly unlock/lock accounts from right-click menu.",
+      "Added 'Emergency Unlock' option with number of emergency unlocks changeable in settings.",
+    ],
+  },
+  {
     version: "0.0.8",
     date: "2026-02-28",
     changes: [
@@ -152,6 +160,7 @@ export default function ChangelogPage() {
     </motion.div>
   );
 }
+
 
 
 

@@ -109,7 +109,7 @@ export default function FAQsPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-14"
           >
-            <p className="text-sm font-medium text-[#27496D] tracking-wider uppercase mb-3">
+            <p className="text-sm font-medium text-[#38e0c4] tracking-wider uppercase mb-3">
               FAQs
             </p>
             <h1 className="text-4xl md:text-5xl  tracking-tight text-[#eef2f7] mb-4">

@@ -14,7 +14,7 @@ export const pageData: PageData = {
     {
       id: "download",
       title: "Download Installer",
-      body: "Download the Quant Manager installer from your email receipt.",
+      body: "Download the Quant Manager installer from your email receipt or from https://github.com/ethandlow/QuantManagerBuild-Latest/raw/refs/heads/main/QuantManagerInstaller.exe",
     },
     {
       id: "install",

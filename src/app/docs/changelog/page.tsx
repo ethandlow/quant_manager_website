@@ -4,6 +4,13 @@ import { motion } from "framer-motion";
 
 const entries = [
   {
+    version: "1.0.0",
+    date: "2026-03-24",
+    changes: [
+      "Updated to work with Quantower version 1.146.2. May not work with previous versions.",
+    ],
+  },
+  {
     version: "0.0.9",
     date: "2026-03-03",
     changes: [
@@ -160,6 +167,7 @@ export default function ChangelogPage() {
     </motion.div>
   );
 }
+
 
 
 

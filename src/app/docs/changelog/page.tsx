@@ -4,6 +4,14 @@ import { motion } from "framer-motion";
 
 const entries = [
   {
+    version: "1.0.1",
+    date: "2026-04-01",
+    changes: [
+      "Added \"Peak Realized Balance\" custom variable that resets daily.",
+      "Added \"Peak Unrealized Balance\" custom variable that resets daily.",
+    ],
+  },
+  {
     version: "1.0.0",
     date: "2026-03-24",
     changes: [
@@ -167,6 +175,7 @@ export default function ChangelogPage() {
     </motion.div>
   );
 }
+
 
 
 

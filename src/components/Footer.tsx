@@ -34,14 +34,11 @@ export default function Footer() {
               <span className="text-xs font-medium text-[#eef2f7]/40 uppercase tracking-wider">
                 Product
               </span>
-              <Link href="/pricing" className="text-sm text-[#9ba6b3] hover:text-[#eef2f7] transition-colors">
-                Pricing
-              </Link>
               <Link href="/docs" className="text-sm text-[#9ba6b3] hover:text-[#eef2f7] transition-colors">
                 Docs
               </Link>
-              <Link href="/faqs" className="text-sm text-[#9ba6b3] hover:text-[#eef2f7] transition-colors">
-                FAQs
+              <Link href="/docs/changelog" className="text-sm text-[#9ba6b3] hover:text-[#eef2f7] transition-colors">
+                Changelog
               </Link>
             </div>
             <div className="flex flex-col gap-2">

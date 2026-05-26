@@ -1,74 +1,63 @@
-"use client";
+import Link from "next/link";
 
-import { useRef, useEffect, useCallback } from "react";
-import QuantManagerReplica from "./QuantManagerReplica";
+const CTA_URL = "https://buy.stripe.com/7sY5kE1nW84Ib0S5vH9ws00";
 
 export default function HeroSection() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const rafId = useRef<number>(0);
-
-  const updateScrollVars = useCallback(() => {
-    const el = heroRef.current;
-    if (!el) return;
-
-    const rect = el.getBoundingClientRect();
-    const sectionHeight = rect.height;
-    const progress = Math.min(
-      Math.max(-rect.top / (sectionHeight || 1), 0),
-      1,
-    );
-
-    const opacity = Math.max(1 - (progress - 0.45) / 0.45, 0);
-    const y = -80 * progress;
-    const scale = 1 - 0.03 * progress;
-
-    el.style.setProperty("--hero-opacity", String(opacity));
-    el.style.setProperty("--hero-y", `${y}px`);
-    el.style.setProperty("--hero-scale", String(scale));
-  }, []);
-
-  useEffect(() => {
-    updateScrollVars();
-    const onScroll = () => {
-      if (rafId.current) return;
-      rafId.current = requestAnimationFrame(() => {
-        updateScrollVars();
-        rafId.current = 0;
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-    };
-  }, [updateScrollVars]);
-
   return (
-    <section ref={heroRef} className="relative z-10 overflow-hidden">
-      {/* Solid black background — stretches to content height */}
-      <div className="absolute inset-0 bg-[#000000]" />
-
+    <section className="relative z-10 overflow-hidden">
+      {/* Ambient background: radial gradient + faint dot grid — pure CSS, no JS */}
       <div
+        className="absolute inset-0"
         style={{
-          opacity: "var(--hero-opacity, 1)",
-          transform:
-            "translate3d(0, var(--hero-y, 0px), 0) scale(var(--hero-scale, 1))",
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% -10%, #27496D22 0%, transparent 70%), #000000",
         }}
-        className="relative flex flex-col items-center w-full overflow-x-hidden py-0"
-      >
-        {/* Hero block: one-line title, tagline, CTA — centered near top; shrink-0 keeps it above replica */}
-        <div className="shrink-0 w-full max-w-6xl mx-auto px-6 pt-40 pb-8 flex flex-col items-center text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl tracking-tight text-[#eef2f7] leading-tight">
+        aria-hidden="true"
+      />
+      {/* Faint dot grid */}
+      <div
+        className="absolute inset-0 opacity-[0.18]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, #38e0c4 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+        aria-hidden="true"
+      />
+      {/* Subtle teal glow at center-top */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] opacity-30"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, #38e0c4, transparent)",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative mx-auto max-w-5xl px-6 pt-40 pb-28 flex flex-col items-center text-center">
+        {/* Eyebrow badge */}
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-[#0f141c]/70 px-4 py-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#38e0c4]" />
+          <span className="text-xs text-[#9ba6b3] tracking-wide">
             Risk Management for Quantower
-          </h1>
-          <p className="mt-4 text-base sm:text-lg text-[#9ba6b3]">
-            Trade with confidence. Stop blowing up.
-          </p>
+          </span>
+        </div>
+
+        <h1 className="text-4xl sm:text-5xl md:text-[3.75rem] tracking-tight text-[#eef2f7] leading-[1.1] max-w-3xl">
+          Quantower, with a built-in risk officer.
+        </h1>
+
+        <p className="mt-6 text-base sm:text-lg text-[#9ba6b3] max-w-xl leading-relaxed">
+          Auto-flatten, auto-lock, and protect every account the moment a daily
+          loss, position target, or trailing-balance rule is hit.
+        </p>
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <a
-            href="https://buy.stripe.com/7sY5kE1nW84Ib0S5vH9ws00"
+            href={CTA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 rounded-none bg-[#27496D] px-6 py-3 text-base  text-white shadow-none hover:bg-[#27496D] transition-all hover:-translate-y-0.5 active:translate-y-0"
+            className="inline-flex items-center gap-2 rounded-2xl bg-[#27496D] px-7 py-3.5 text-base text-white shadow-none hover:bg-[#27496D] transition-all hover:-translate-y-0.5 active:translate-y-0"
           >
             Get Access
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
@@ -81,21 +70,12 @@ export default function HeroSection() {
               />
             </svg>
           </a>
-        </div>
-
-        {/* Quant Manager Replica — enough height to show full UI before next section */}
-        <div className="w-full max-w-6xl mx-auto px-6 pb-12 flex items-start justify-center">
-          <div
-            className="relative w-full rounded-md overflow-hidden border border-[#1e2a38] bg-[#0b1016]"
-            style={{
-              boxShadow: "0 30px 70px -20px rgba(0,0,0,0.5)",
-              aspectRatio: "1140/633",
-              minHeight: 620,
-              maxHeight: "min(80vh, 680px)",
-            }}
+          <Link
+            href="/docs/guides/quickstart"
+            className="inline-flex items-center gap-2 rounded-2xl border border-white/[0.1] bg-transparent px-7 py-3.5 text-base text-[#9ba6b3] hover:text-[#eef2f7] hover:border-white/[0.2] transition-all"
           >
-            <QuantManagerReplica />
-          </div>
+            Read the Docs
+          </Link>
         </div>
       </div>
     </section>

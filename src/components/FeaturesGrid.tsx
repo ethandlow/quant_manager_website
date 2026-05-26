@@ -4,58 +4,142 @@ import { useRef, useEffect, useState } from "react";
 
 const features = [
   {
-    icon: "\u{1F4CA}",
-    title: "Unified Dashboard",
-    description:
-      "Easily monitor equity, P&L, drawdown, lock status across all accounts.",
-  },
-  {
-    icon: "\u{1F3AF}",
-    title: "Daily Profit Target",
-    description:
-      "Set a daily profit target. Auto-flatten and lock your account when hit.",
-  },
-  {
-    icon: "\u{1F6E1}\uFE0F",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path
+          d="M10 3v14M3 10h14"
+          stroke="#38e0c4"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <rect
+          x="3"
+          y="3"
+          width="14"
+          height="14"
+          rx="2"
+          stroke="#38e0c4"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M3 7h14M7 3v14"
+          stroke="#38e0c4"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          opacity="0.4"
+        />
+      </svg>
+    ),
     title: "Daily Loss Limit",
-    description:
-      "Set a daily loss limit. Auto-flatten and lock your account when hit.",
+    description: "Set your max daily loss. We do the rest.",
   },
   {
-    icon: "\u{23F1}\uFE0F",
-    title: "Timed Locks",
-    description:
-      "Schedule lock windows to prevent trading during high-risk periods or after-hours.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path
+          d="M10 16V4M6 8l4-4 4 4"
+          stroke="#38e0c4"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M4 16h12"
+          stroke="#38e0c4"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          opacity="0.5"
+        />
+      </svg>
+    ),
+    title: "Daily Profit Target",
+    description: "Hit your number. Walk away. Automatically.",
   },
   {
-    icon: "\u{1F4D0}",
-    title: "Trailing Balance Protection",
-    description:
-      "Automatically trail and lock when drawdown exceeds your threshold.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <rect x="2" y="5" width="7" height="5" rx="1" stroke="#38e0c4" strokeWidth="1.5" />
+        <rect x="11" y="5" width="7" height="5" rx="1" stroke="#38e0c4" strokeWidth="1.5" />
+        <rect x="2" y="12" width="7" height="3" rx="1" stroke="#38e0c4" strokeWidth="1.5" opacity="0.5" />
+        <rect x="11" y="12" width="7" height="3" rx="1" stroke="#38e0c4" strokeWidth="1.5" opacity="0.5" />
+      </svg>
+    ),
+    title: "Multi-Account Dashboard",
+    description: "Every account. Every number. One panel.",
   },
   {
-    icon: "\u{1F4C8}",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="7" stroke="#38e0c4" strokeWidth="1.5" />
+        <path
+          d="M10 6v4l3 2"
+          stroke="#38e0c4"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M7 17.5C5 16.5 3.5 15 3.5 13"
+          stroke="#38e0c4"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          opacity="0.4"
+        />
+      </svg>
+    ),
     title: "Max Position Size",
-    description:
-      "Set a maximum position size per symbol or account. Auto-flatten or block new orders when the limit is exceeded.",
+    description: "Hard size caps, enforced on every order.",
   },
   {
-    icon: "\u{1F3A8}",
-    title: "Templates",
-    description:
-      "Create and manage templates to quickly apply risk rules to multiple accounts.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <rect x="3" y="4" width="14" height="12" rx="2" stroke="#38e0c4" strokeWidth="1.5" />
+        <path
+          d="M7 4V3M13 4V3"
+          stroke="#38e0c4"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M3 8h14"
+          stroke="#38e0c4"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          opacity="0.5"
+        />
+        <path
+          d="M7 12h2M11 12h2"
+          stroke="#38e0c4"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
+    title: "Trading Window + Scheduled Flatten",
+    description: "No trades outside your hours. Period.",
   },
   {
-    icon: "\u{1F527}",
-    title: "Custom Rules",
-    description:
-      "Customize your risk rules to fit your trading style using our custom formula builder.",
-  },
-  {
-    icon: "\u{1F512}",
-    title: "Account Flatten & Lock",
-    description:
-      "Instantly flatten all positions and lock an account with a single click when rules trigger.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path
+          d="M4 6h12M4 10h8M4 14h5"
+          stroke="#38e0c4"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <circle cx="15" cy="14" r="3" stroke="#38e0c4" strokeWidth="1.5" />
+        <path
+          d="M15 13v1.5l1 1"
+          stroke="#38e0c4"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.6"
+        />
+      </svg>
+    ),
+    title: "Risk Templates",
+    description: "One risk profile. Twenty accounts. One click.",
   },
 ];
 
@@ -88,8 +172,8 @@ export default function FeaturesGrid() {
           <p className="text-sm font-medium text-[#38e0c4] tracking-wider uppercase mb-3">
             Key Features
           </p>
-          <h2 className="text-3xl md:text-4xl  tracking-tight text-[#eef2f7]">
-            Take your trading to the next level
+          <h2 className="text-3xl md:text-4xl tracking-tight text-[#eef2f7]">
+            Everything you need to trade protected
           </h2>
         </div>
 
@@ -105,10 +189,10 @@ export default function FeaturesGrid() {
               }`}
               style={{ animationDelay: `${i * 80}ms` }}
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#27496D]/20 to-[#38e0c4]/10 mb-5 ring-1 ring-white/[0.06]">
-                <span className="text-lg">{feat.icon}</span>
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0f141c] mb-5 ring-1 ring-white/[0.06]">
+                {feat.icon}
               </div>
-              <h3 className="text-base  text-[#eef2f7] mb-2">
+              <h3 className="text-base text-[#eef2f7] mb-2">
                 {feat.title}
               </h3>
               <p className="text-sm text-[#9ba6b3] leading-relaxed">

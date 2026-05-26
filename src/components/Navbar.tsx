@@ -5,9 +5,7 @@ import Link from "next/link";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/pricing", label: "Pricing" },
   { href: "/docs", label: "Docs" },
-  { href: "/faqs", label: "FAQs" },
 ];
 
 const CTA_URL =
@@ -69,7 +67,7 @@ export default function Navbar() {
                 href={CTA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-none border-0 bg-[#27496D] px-4 py-2 text-sm text-white shadow-none hover:bg-[#27496D] transition-all hover:-translate-y-px active:translate-y-0"
+                className="inline-flex items-center gap-2 rounded-2xl border-0 bg-[#27496D] px-4 py-2 text-sm text-white shadow-none hover:bg-[#27496D] transition-all hover:-translate-y-px active:translate-y-0"
               >
                 Get Access
                 <svg
@@ -140,7 +138,7 @@ export default function Navbar() {
             href={CTA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="block mt-3 text-center rounded-none bg-[#27496D] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#27496D] transition-colors"
+            className="block mt-3 text-center rounded-2xl bg-[#27496D] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#27496D] transition-colors"
           >
             Get Access
           </a>

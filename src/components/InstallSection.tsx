@@ -1,7 +1,9 @@
 import Link from "next/link";
 
-const RELEASES_URL =
-  "https://github.com/ldqtrading/quantmanager/releases/latest";
+const INSTALLER_URL =
+  "https://github.com/ethandlow/QuantManagerBuild-Latest/raw/refs/heads/main/QuantManagerInstaller.exe";
+const DLL_URL =
+  "https://github.com/ethandlow/QuantManagerBuild-Latest/raw/refs/heads/main/QuantManager.dll";
 
 export default function InstallSection() {
   return (
@@ -40,7 +42,7 @@ export default function InstallSection() {
             </div>
             <div className="mt-auto flex flex-col gap-3">
               <a
-                href={RELEASES_URL}
+                href={INSTALLER_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#27496D] px-6 py-3 text-base text-white hover:bg-[#27496D] transition-all hover:-translate-y-0.5 active:translate-y-0"
@@ -79,7 +81,7 @@ export default function InstallSection() {
             </div>
             <div className="mt-auto flex flex-col gap-3">
               <a
-                href={RELEASES_URL}
+                href={DLL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#27496D] px-6 py-3 text-base text-white hover:bg-[#27496D] transition-all hover:-translate-y-0.5 active:translate-y-0"

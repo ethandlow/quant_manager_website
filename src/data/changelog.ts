@@ -14,13 +14,6 @@ export const changelog: ChangelogEntry[] = [
   },
   {
     version: "1.0.1",
-    date: "2026-05-27",
-    changes: [
-      "Fixed a bug where users could manually lock an account while in an emergency unlock to circumvent a lock duration.",
-    ],
-  },
-  {
-    version: "1.0.1",
     date: "2026-04-01",
     changes: [
       'Added "Peak Realized Balance" custom variable that resets daily.',
